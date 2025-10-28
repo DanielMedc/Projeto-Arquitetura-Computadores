@@ -3,16 +3,14 @@ import sys
 from ngram_score import ngram_score # Importa a classe do seu outro arquivo
 
 random.seed(1337)
-# --- 1. FUNÇÕES AUXILIARES ---
+# --- 0.1 FUNÇÕES AUXILIARES ---
 
 ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 def decrypt(ciphertext, key_map):
     """
     Descriptografa o texto (ciphertext) usando o mapa de chaves (key_map).
-    Otimizado para ser rápido, pois será chamado milhares de vezes.
     """
-    # Usa um "generator expression" por ser mais rápido em memória
     return "".join(key_map[c] for c in ciphertext)
 
 def get_random_key():
@@ -23,7 +21,7 @@ def get_random_key():
     # Ex: {'A': 'Q', 'B': 'W', 'C': 'E', ...}
     return dict(zip(ALPHABET, key_list))
 
-# --- 2. CONFIGURAÇÃO ---
+# --- 0.2 CONFIGURAÇÃO ---
 
 try:
     fitness = ngram_score('english_quadgrams.txt')
@@ -45,9 +43,10 @@ ciphertext = "".join(c for c in original_text.upper() if c in ALPHABET)
 
 print("-----------------------------------------------------------\n")
 
-# --- 3. O ALGORITMO  ---
+
 
 MAX_ITERATIONS = 10000
+# Paciência do programa
 
 # 1. Gera a chave "pai" inicial
 parent_key = get_random_key()
@@ -77,7 +76,7 @@ while i < MAX_ITERATIONS:
 
     # 5. Compara as pontuações
     if child_score > parent_score:
-        # Achamos uma melhora! O "filho" se torna o novo "pai".
+        # Achamos uma melhora
         parent_key = child_key
         parent_score = child_score
         i = 0 # Reinicia o contador de iterações, já que achamos uma melhora
@@ -96,9 +95,7 @@ print("\n-----------------------------------------------------------")
 
 # Imprime a melhor chave encontrada
 print("\nMelhor Chave Encontrada (Cifra -> Plaintext):")
-key_str = "Primeira chave     " + "".join(ALPHABET)
 plain_str = "Chave: " + "".join(best_key[c] for c in ALPHABET)
-print(key_str)
 print(plain_str)
 
 # Descriptografa o texto *original* (com espaços e pontuação)

@@ -107,7 +107,7 @@ while i < MAX_ITERATIONS:
 print("\n-----------------------------------------------------------")
 
 # Imprime a melhor chave encontrada
-print("\nMelhor Chave Encontrada (Cifra -> Plaintext):")
+print("\nMelhor Chave Encontrada:")
 plain_str = "Chave: " + "".join(best_key[c] for c in ALPHABET)
 print(f"Chaves testadas: {contador_chave}")
 print(f"Decriptações: {contador_decriptação}")
@@ -137,3 +137,4 @@ plt.tight_layout()
 plt.show()
 # Salva o gráfico em um arquivo
 plt.savefig("evolucao_fitness.png")
+

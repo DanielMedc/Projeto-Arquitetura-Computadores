@@ -110,7 +110,7 @@ print("\n-----------------------------------------------------------")
 print("\nMelhor Chave Encontrada:")
 plain_str = "Chave: " + "".join(best_key[c] for c in ALPHABET)
 print(f"Chaves testadas: {contador_chave}")
-print(f"Decriptações: {contador_decriptação}")
+print(f"Decriptações no total: {contador_decriptação}")
 print(plain_str)
 
 # Descriptografa o texto original usando a melhor chave encontrada.
@@ -137,4 +137,5 @@ plt.tight_layout()
 plt.show()
 # Salva o gráfico em um arquivo
 plt.savefig("evolucao_fitness.png")
+
 

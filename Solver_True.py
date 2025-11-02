@@ -52,6 +52,7 @@ MAX_ITERATIONS = 1000
 
 # Gera a chave "pai" inicial
 contador_chave = 0
+contador_chave_ruim =0
 # contador_decriptação = 0 # Já foi inicializado globalmente
 
 parent_key = get_key()
@@ -100,16 +101,19 @@ while i < MAX_ITERATIONS:
             fitness_history.append(best_score)
             iteration_history.append(contador_decriptação) # Adiciona o ponto atual
             # ---  ---
-    i += 1
+    else:
+        i += 1
+        contador_chave_ruim +=1
 
 # --- RESULTADOS ---
 
 print("\n-----------------------------------------------------------")
 
 # Imprime a melhor chave encontrada
-print("\nMelhor Chave Encontrada:")
+print("\nMelhor Chave Encontrada (Cifra -> Plaintext):")
 plain_str = "Chave: " + "".join(best_key[c] for c in ALPHABET)
-print(f"Chaves testadas: {contador_chave}")
+print(f"Chaves melhores testadas: {contador_chave}")
+print(f"Chaves piores testadas: {contador_chave_ruim}")
 print(f"Decriptações no total: {contador_decriptação}")
 print(plain_str)
 
@@ -134,8 +138,7 @@ plt.ylabel("Melhor Fitness Score Encontrado")
 plt.grid(True, which='both', linestyle='--', linewidth=0.5)
 plt.legend()
 plt.tight_layout()
-plt.show()
+
 # Salva o gráfico em um arquivo
 plt.savefig("evolucao_fitness.png")
-
-
+plt.show()

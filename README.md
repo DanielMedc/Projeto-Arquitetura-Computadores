@@ -10,7 +10,7 @@ Esse Projeto tem duas partes
    mais "humana" == "descriptografada" o texto
    3.1 ngram_score.py : definição da função fitness, fornecido pelo professor
    3.4 resposta_final.txt : well, o texto final descriptografado
-   3.2 Solver_True.py *
+   3.2 solver.py *
 
 -- SOLVER --
 Decifrador de Cifra de Substituição com Hill Climbing
